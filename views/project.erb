@@ -12,9 +12,16 @@
 
     <input class="form-control" id="title" name="title" placeholder="new name">
   </form-group>
+  <br>
   <button class="btn">Update Project</button>
 </form>
-<br><br>
+<br>
+
+<form method="post" action="/projects/<%= @project.id %>">
+  <input name="_method" type="hidden" value="delete">
+  <button class="btn">Delete Project</button>
+</form>
+<br>
 
 <% if @volunteers.any? %>
 <h3>Volunteers for <%= @project.name %>:</h3>
