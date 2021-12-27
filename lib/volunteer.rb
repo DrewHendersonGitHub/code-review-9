@@ -7,4 +7,4 @@ class Volunteer
     @project_id = attributes[:project_id]
   end
 
-  
+end

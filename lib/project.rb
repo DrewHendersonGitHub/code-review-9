@@ -1,4 +1,4 @@
-class Volunteer
+class Project
   attr_accessor :id, :name
 
   def initialize(attributes)
@@ -6,4 +6,4 @@ class Volunteer
     @name = attributes[:name]
   end
 
-  
+end

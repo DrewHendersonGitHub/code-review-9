@@ -7,5 +7,5 @@ require "pg"
 #DB = PG.connect({ dbname: 'volunteer_tracker_test', host: 'db', user: 'postgres', password: 'password' })
 
 get '/' do
-  "This is connected to the database #{DB.new}."
+  "This is connected to the database ."
 end
