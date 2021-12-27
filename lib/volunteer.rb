@@ -1,5 +1,3 @@
-
-
 class Volunteer
   attr_accessor :id, :name, :project_id
 

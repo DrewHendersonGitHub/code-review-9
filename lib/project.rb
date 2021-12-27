@@ -1,5 +1,3 @@
-
-
 class Project
   attr_accessor :id, :name
 

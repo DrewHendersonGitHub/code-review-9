@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe Project do
+  
   describe '#name' do
     it 'returns the project name' do
       project = Project.new({:name => 'Teaching Kids to Code', :id => nil})
