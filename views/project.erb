@@ -3,14 +3,16 @@
 <% end %>
 <br>
 
+<a href="/projects/<%= @project.id %>/edit">Edit Project</a>
+
 <form action="/projects/<%= @project.id %>" method="post">
   <div class="form-group">
     <input name="_method" type="hidden" value="patch">
-    <label for="name">Change project name?</label>
+    <label for="title">Change project name?</label>
 
-    <input class="form-control" id="name" name="name" placeholder="new name">
+    <input class="form-control" id="title" name="title" placeholder="new name">
   </form-group>
-  <button class="btn">Update</button>
+  <button class="btn">Update Project</button>
 </form>
 <br><br>
 
@@ -22,5 +24,17 @@
     <% end %>
   </ul>
 <% else %>
-  <p>There aren't any volunteers signed up yet.</p>
+  <h4>There aren't any volunteers signed up yet.</h4>
 <% end %>
+<br>
+
+<h3>Add a volunteer to this project:</h3>
+
+<form action="/projects/<%= @project.id %>" method="post">
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input id="name" name="name" class="form-control" type="text" placeholder="first name, last name">
+  </div>
+  <input id="projectid" name="projectid" type="hidden" value="<%= @project.id %>">
+  <button type="submit" class="btn">Add </button>
+</form>

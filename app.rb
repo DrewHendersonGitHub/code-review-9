@@ -41,3 +41,19 @@ patch('/projects/:id') do
   @volunteers = Volunteer.all
   erb(:project)
 end
+
+post '/projects/:id' do
+  volunteer = Volunteer.new({name: params[:title], project_id: params[:projectid]})
+  volunteer.save
+  @project = Project.find(params[:id].to_i)
+  @all_volunteers = Volunteer.all
+  @volunteers = @project.volunteers 
+  erb(:project)
+end
+
+get('/projects/:id/edit') do
+  @project = Project.find(params[:id].to_i)
+  @all_volunteers = Volunteer.all
+  @volunteers = @project.volunteers
+  erb(:project)
+end
