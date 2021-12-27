@@ -1,0 +1,14 @@
+<% if @volunteer %>
+  <h2><%=@volunteer.name%> is volunteering for: <%= @project.name %>.</h2>
+<% end %>
+
+<h3>Update name:</h3>
+
+<form method="post" action="/volunteer/<%= @volunteer.id %>">
+  <input name="_method" type="hidden" value="patch">
+  <input id="volunteerid" name="volunteerid" type="hidden" value="<%= @volunteer.id %>">
+  <label for="name">Name</label>
+  <input class="form-control" id="name" name="name" placeholder="new name">
+  <br>
+  <button class="btn">Update Volunteer</button>
+</form>
