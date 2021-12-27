@@ -17,9 +17,14 @@ class Volunteer
     volunteers = []
     returns = DB.exec("SELECT * FROM volunteers;")
     returns.each do |volunteer|
-      volunteers.push(Volunteers.new(name: volunteers.fetch("name"), project_id: volunteers.fetch("project_id"), id: volunteers.fetch("id")))
+      volunteers.push(Volunteer.new(name: volunteer.fetch("name"), project_id: volunteer.fetch("project_id").to_i, id: volunteer.fetch("id").to_i))
     end
     volunteers
+  end
+
+  def save
+    result = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;")
+    @id = result.first().fetch("id").to_i
   end
 
 end
