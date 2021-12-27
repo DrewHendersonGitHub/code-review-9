@@ -1,6 +1,7 @@
 require "spec_helper"
 
 describe Volunteer do
+  
   describe '#name' do
     it 'returns the name of the volunteer' do
       test_volunteer = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
@@ -59,8 +60,18 @@ describe Volunteer do
     it 'allows a user to update a volunteer' do
       volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
       volunteer1.save
-      volunteer1.update({:project_id => 2})
+      volunteer1.update({project_id: 2})
       expect(volunteer1.project_id).to eq 2
     end
   end
+
+  describe '#update_name' do
+    it 'updates a volunteers name' do
+      volunteer1 = Volunteer.new({:name => 'Jane', :project_id => 1, :id => nil})
+      volunteer1.save
+      volunteer1.update_name({name: "Robert"})
+      expect(volunteer1.name).to eq "Robert"
+    end
+  end
+
 end
