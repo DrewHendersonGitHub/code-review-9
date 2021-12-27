@@ -1,0 +1,26 @@
+<% if @project %>
+  <h2>Project: <%= @project.name %></h2>
+<% end %>
+<br>
+
+<form action="/projects/<%= @project.id %>" method="post">
+  <div class="form-group">
+    <input name="_method" type="hidden" value="patch">
+    <label for="name">Change project name?</label>
+
+    <input class="form-control" id="name" name="name" placeholder="new name">
+  </form-group>
+  <button class="btn">Update</button>
+</form>
+<br><br>
+
+<% if @volunteers.any? %>
+<h3>Volunteers for <%= @project.name %>:</h3>
+  <ul>
+    <% @volunteers.each do |volunteer| %>
+      <li><a href="/volunteer/<%= volunteer.id %>"><%= volunteer.name %></a></li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>There aren't any volunteers signed up yet.</p>
+<% end %>

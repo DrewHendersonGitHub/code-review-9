@@ -10,11 +10,13 @@ DB = PG.connect({ dbname: 'volunteer_tracker', host: 'db', user: 'postgres', pas
 
 get '/' do
   @projects = Project.all
+
   erb(:projects)
 end
 
 get '/projects' do
   @projects = Project.all
+
   erb(:projects)
 end
 
@@ -25,3 +27,17 @@ post '/projects' do
   erb(:projects)
 end
 
+get '/projects/:id' do
+  @project = Project.find(params[:id].to_i)
+  @all_volunteers = Volunteer.all
+  @volunteers = @project.volunteers
+  erb(:project)
+end
+
+patch('/projects/:id') do
+  @project = Project.find(params[:id].to_i)
+  name = params[:name]
+  @project.update({name: name})
+  @volunteers = Volunteer.all
+  erb(:project)
+end
