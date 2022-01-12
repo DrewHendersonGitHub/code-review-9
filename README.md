@@ -23,20 +23,16 @@ This site shows a list of projects on the home page, which can be added to or cl
 
 ## Setup/Installation Requirements
 
-* Create and/or navigate to the directory you would like to contain this project on your computer.
-* Initialize a git repository by typing **git init** in the terminal.
-* Type `git clone https://github.com/DrewHendersonGitHub/code-review-9.git` to clone the repository to your local machine.
-* Navigate into project directory by typing `cd code-review-9`
-* Comment out line 9 in `app.rb`
-* Run `docker-compose up` to get Postgres and Sinatra running
-* Type in your terminal:  
-      `createdb [DATABASE NAME]`  
-      `psql [DATABASE_NAME] < database_backup.sql`
-      `createdb -T [DATABASE_NAME] [TEST_DATABASE_NAME]`
-* Uncomment line 9 in `app.rb` to reconnect the database to the project
-* Run `docker-compose up --build` to rebuild with the database
-* After building the database, type `docker-compose run --rm web bundle exec rspec` in the terminal to confirm passing of all tests
-* Open browswer and enter the url "http://localhost:4567/" unless otherwise prompted in the terminal
+* Clone the project using ```git clone https://github.com/DrewHendersonGitHub/code-review-9``` into a new directory on your computer
+* Open the project, comment out line 9 in app.rb, and save it
+* Run ```docker-compose up``` in a terminal
+* In a new terminal, run ```docker ps``` and copy the container id for postgres
+* Run ```docker exec -it -u postgres [CONTAINER_ID] psql``` with the container id replaced
+* Create a new data base using ```CREATE DATABASE volunteer_tracker;```
+* Exit postgres using ```\q``` and run ```docker exec -i [CONTAINER_ID] psql --username postgres volunteer_tracker < database_backup.sql``` with the container id replaced to restore the database
+* Uncomment out app.rb line 9 and run ```docker-compose up --build```
+* Open a browser and go to http://localhost:4567/
+
 
 ## Known Bugs
 
@@ -45,8 +41,6 @@ There are currently no known bugs.
 ## License
 
 [MIT](https://opensource.org/licenses/MIT)
-
-If you have any issues, questions, ideas or concerns, please reach out to me at my email and/or make a contribution to the code via GitHub.  
 
 Copyright (c) 2021 Drew Henderson
 
