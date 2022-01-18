@@ -39,7 +39,9 @@ end
 
 patch '/projects/:id' do
   @project = Project.find(params[:id].to_i)
-  @project.update({name: params[:title]})
+  if params[:title].strip != ""
+    @project.update({name: params[:title]})
+  end
   @volunteers = Volunteer.all
   erb(:project)
 end
@@ -79,7 +81,9 @@ end
 
 patch '/volunteer/:id' do
   @volunteer = Volunteer.find(params[:volunteerid])
-  @volunteer.update_name({name: params[:name]})
+  if params[:name].strip != ""
+    @volunteer.update_name({name: params[:name]})
+  end
   @volunteer = Volunteer.find(params[:id].to_i)
   @project = Project.find((@volunteer.project_id).to_i)
   @all_volunteers = Volunteer.all
