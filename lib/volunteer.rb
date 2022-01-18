@@ -8,7 +8,11 @@ class Volunteer
   end
 
   def ==(compared)
-    self.name == compared.name && self.project_id == compared.project_id
+    if compared != nil
+      self.name == compared.name && self.project_id == compared.project_id
+    else
+      false
+    end
   end
 
   def self.all
@@ -27,7 +31,11 @@ class Volunteer
 
   def self.find(id)
     volunteer = DB.exec("SELECT * FROM volunteers WHERE id = #{id};").first
-    Volunteer.new(name: volunteer.fetch("name"), project_id: volunteer.fetch("project_id").to_i, id: volunteer.fetch("id").to_i)
+    if volunteer
+      Volunteer.new(name: volunteer.fetch("name"), project_id: volunteer.fetch("project_id").to_i, id: volunteer.fetch("id").to_i)
+    else
+      nil
+    end
   end
 
   def update(attributes)

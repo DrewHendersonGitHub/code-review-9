@@ -19,8 +19,13 @@ get '/projects' do
 end
 
 post '/projects' do
-  project = Project.new({name: params[:name]})
-  project.save
+  if params[:name].strip == ""
+    project = Project.new({name: "New Project"})
+    project.save
+  else
+    project = Project.new({name: params[:name]})
+    project.save
+  end
   @projects = Project.all
   erb(:projects)
 end
@@ -40,8 +45,13 @@ patch '/projects/:id' do
 end
 
 post '/projects/:id' do
-  volunteer = Volunteer.new({name: params[:name], project_id: params[:projectid]})
-  volunteer.save
+  if params[:name].strip == ""
+    volunteer = Volunteer.new({name: "New Volunteer", project_id: params[:projectid]})
+    volunteer.save
+  else
+    volunteer = Volunteer.new({name: params[:name], project_id: params[:projectid]})
+    volunteer.save
+  end  
   @project = Project.find(params[:id].to_i)
   @all_volunteers = Volunteer.all
   @volunteers = @project.volunteers 
@@ -72,5 +82,7 @@ patch '/volunteer/:id' do
   @volunteer.update_name({name: params[:name]})
   @volunteer = Volunteer.find(params[:id].to_i)
   @project = Project.find((@volunteer.project_id).to_i)
-  erb(:volunteer)
+  @all_volunteers = Volunteer.all
+  @volunteers = @project.volunteers
+  erb(:project)
 end

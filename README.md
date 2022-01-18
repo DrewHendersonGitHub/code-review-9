@@ -31,6 +31,7 @@ This site shows a list of projects on the home page, which can be added to or cl
 * Create a new data base using ```CREATE DATABASE volunteer_tracker;```.
 * Exit postgres using ```\q``` and run ```docker exec -i [CONTAINER_ID] psql --username postgres volunteer_tracker < database_backup.sql``` with the container id replaced to restore the database.
 * Uncomment out app.rb line 9 and run ```docker-compose up --build```.
+* To run tests, enter ```docker-compose run --rm web bundle exec rspec``` into the terminal.
 * Open a browser and go to http://localhost:4567/ to use the site.
 
 
